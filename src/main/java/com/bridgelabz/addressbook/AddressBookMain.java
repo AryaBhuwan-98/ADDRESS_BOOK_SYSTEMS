@@ -43,10 +43,10 @@ public class AddressBookMain {
             return;
         }
         for (int i = 0; i < books.size(); i++) {
-            List<Object> matchedContactPerson = books.get(i).list.stream().filter(x -> x.city.equals(placeName))
+            List<ContactPerson> matchedContact = books.get(i).list.stream().filter(x -> x.city.equals(placeName))
                     .collect(Collectors.toList());
             count += books.get(i).list.stream().filter(x -> x.city.equals(placeName)).count();
-            matchedContactPerson.stream().forEach(x -> System.out.println(x.firstName));
+            matchedContact.stream().forEach(x -> System.out.println(x.firstName));
 
         }
         System.out.println("Number of persons are : " + count);
@@ -59,7 +59,7 @@ public class AddressBookMain {
             return;
         }
         for (int i = 0; i < books.size(); i++) {
-            List<Object> matchedContact = books.get(i).list.stream().filter(x -> x.state.equals(placeName))
+            List<ContactPerson> matchedContact = books.get(i).list.stream().filter(x -> x.state.equals(placeName))
                     .collect(Collectors.toList());
             count += books.get(i).list.stream().filter(x -> x.state.equals(placeName)).count();
             matchedContact.stream().forEach(x -> System.out.println(x.firstName));
@@ -77,9 +77,9 @@ public class AddressBookMain {
             switch (response) {
                 case 0:
                     ContactPerson contact = new ContactPerson();
-                    contactPerson.addContactPerson();
+                    contact.addContact();
                     boolean duplicateContact = books.get(i).list.stream()
-                            .anyMatch(x -> x.firstName.equals(ContactPerson.firstName));
+                            .anyMatch(x -> x.firstName.equals(contact.firstName));
                     if (duplicateContact == true) {
                         System.out.println("It is a duplicate contact.");
                         return;
@@ -139,8 +139,17 @@ public class AddressBookMain {
                         System.out.println("Addressbook is empty");
                     }
                     else {
-                        books.get(i).list.sort((Contact x1, Contact x2)->x1.firstName.compareTo(x2.firstName));
-                        books.get(i).list.forEach((s)->System.out.println(s));
+                        Scanner scan = new Scanner(System.in);
+                        while (true) {
+                            System.out.println(
+                                    "Press \n 0 to sort by contact name \n 1 to sort by city \n 2 to sort by state \n 3 to sort by zip");
+                            int response1 = scan.nextInt();
+                            int a = books.get(i).sort(response1, books.get(i));
+                            if(a == 0) {
+                                break;
+                            }
+                        }
+
                     }
                     break;
                 default:
