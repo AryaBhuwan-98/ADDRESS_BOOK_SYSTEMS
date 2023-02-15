@@ -1,54 +1,44 @@
 package com.bridgelabz.addressbook;
 
+import java.util.Scanner;
+
 public class ContactPerson {
   
-    private String firstName, lastName, email;
-    private long phoneNumber;
-    private Address address;
+ ////variables representation////
+ String firstName;
+ String lastName;
+ String address;
+ String city;
+ String state;
 
-    public String getFirstName() {
-        return firstName;
-    }
+ String phoneNumber;
+ String email;
+ String zip;
 
-    public String getLastName() {
-        return lastName;
-    }
 
-    public long getPhoneNumber() {
-        return phoneNumber;
-    }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setPhoneNumber(long phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public String toString() {
-
-        return "Person Details:\nFirst Name - "+firstName+"\nLast Name - "+lastName+"\nPhone Number - "+phoneNumber+"\nEmail - "+email+"\nAddress - "+address;
-
-    }
+ void addContact() {
+     Scanner scan=new Scanner(System.in);
+     System.out.println("First Name :");
+     this.firstName = scan.nextLine();
+     System.out.println("Last Name :");
+     this.lastName = scan.nextLine();
+     System.out.println("Enter the address :");
+     this.address = scan.nextLine();
+     System.out.println("Enter city : ");
+     this.city = scan.nextLine();
+     System.out.println("Enter state : ");
+     this.state = scan.nextLine();
+     System.out.println("Enter Phone Number : ");
+     this.phoneNumber = scan.nextLine();
+     System.out.println("Enter Email : ");
+     this.email = scan.nextLine();
+     System.out.println("Enter zip : ");
+     this.zip = scan.nextLine();
+ }
+ @Override
+ public String toString() {
+     return "Contact [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city=" + city
+             + ", state=" + state + ", phoneNumber=" + phoneNumber + ", email=" + email + ", zip=" + zip + "]";
+ }
 }
